@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChatService.Tcp\ChatService.Tcp.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Sessions\" />
+    <None Remove="Servers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sessions\" />
+    <Folder Include="Servers\" />
+  </ItemGroup>
+</Project>

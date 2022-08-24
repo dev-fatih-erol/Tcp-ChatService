@@ -1,10 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 
-namespace NetCoreServer
+namespace ChatService.Tcp
 {
     /// <summary>
     /// TCP client is used to read/write data from/into the connected TCP server
@@ -18,22 +16,26 @@ namespace NetCoreServer
         /// <param name="address">IP address</param>
         /// <param name="port">Port number</param>
         public TcpClient(IPAddress address, int port) : this(new IPEndPoint(address, port)) {}
+
         /// <summary>
         /// Initialize TCP client with a given server IP address and port number
         /// </summary>
         /// <param name="address">IP address</param>
         /// <param name="port">Port number</param>
         public TcpClient(string address, int port) : this(new IPEndPoint(IPAddress.Parse(address), port)) {}
+
         /// <summary>
         /// Initialize TCP client with a given DNS endpoint
         /// </summary>
         /// <param name="endpoint">DNS endpoint</param>
         public TcpClient(DnsEndPoint endpoint) : this(endpoint as EndPoint, endpoint.Host, endpoint.Port) {}
+
         /// <summary>
         /// Initialize TCP client with a given IP endpoint
         /// </summary>
         /// <param name="endpoint">IP endpoint</param>
         public TcpClient(IPEndPoint endpoint) : this(endpoint as EndPoint, endpoint.Address.ToString(), endpoint.Port) {}
+
         /// <summary>
         /// Initialize TCP client with a given endpoint, address and port
         /// </summary>
@@ -57,14 +59,17 @@ namespace NetCoreServer
         /// TCP server address
         /// </summary>
         public string Address { get; }
+
         /// <summary>
         /// TCP server port
         /// </summary>
         public int Port { get; }
+
         /// <summary>
         /// Endpoint
         /// </summary>
         public EndPoint Endpoint { get; private set; }
+
         /// <summary>
         /// Socket
         /// </summary>
@@ -74,14 +79,17 @@ namespace NetCoreServer
         /// Number of bytes pending sent by the client
         /// </summary>
         public long BytesPending { get; private set; }
+
         /// <summary>
         /// Number of bytes sending by the client
         /// </summary>
         public long BytesSending { get; private set; }
+
         /// <summary>
         /// Number of bytes sent by the client
         /// </summary>
         public long BytesSent { get; private set; }
+
         /// <summary>
         /// Number of bytes received by the client
         /// </summary>
@@ -95,6 +103,7 @@ namespace NetCoreServer
         /// Will work only if socket is bound on IPv6 address.
         /// </remarks>
         public bool OptionDualMode { get; set; }
+
         /// <summary>
         /// Option: keep alive
         /// </summary>
@@ -102,6 +111,7 @@ namespace NetCoreServer
         /// This option will setup SO_KEEPALIVE if the OS support this feature
         /// </remarks>
         public bool OptionKeepAlive { get; set; }
+
         /// <summary>
         /// Option: no delay
         /// </summary>
@@ -109,18 +119,22 @@ namespace NetCoreServer
         /// This option will enable/disable Nagle's algorithm for TCP protocol
         /// </remarks>
         public bool OptionNoDelay { get; set; }
+
         /// <summary>
         /// Option: receive buffer limit
         /// </summary>
         public int OptionReceiveBufferLimit { get; set; } = 0;
+
         /// <summary>
         /// Option: receive buffer size
         /// </summary>
         public int OptionReceiveBufferSize { get; set; } = 8192;
+
         /// <summary>
         /// Option: send buffer limit
         /// </summary>
         public int OptionSendBufferLimit { get; set; } = 0;
+
         /// <summary>
         /// Option: send buffer size
         /// </summary>
@@ -134,6 +148,7 @@ namespace NetCoreServer
         /// Is the client connecting?
         /// </summary>
         public bool IsConnecting { get; private set; }
+
         /// <summary>
         /// Is the client connected?
         /// </summary>
@@ -1002,18 +1017,6 @@ namespace NetCoreServer
 
         protected virtual void Dispose(bool disposingManagedResources)
         {
-            // The idea here is that Dispose(Boolean) knows whether it is
-            // being called to do explicit cleanup (the Boolean is true)
-            // versus being called due to a garbage collection (the Boolean
-            // is false). This distinction is useful because, when being
-            // disposed explicitly, the Dispose(Boolean) method can safely
-            // execute code using reference type fields that refer to other
-            // objects knowing for sure that these other objects have not been
-            // finalized or disposed of yet. When the Boolean is false,
-            // the Dispose(Boolean) method should not execute code that
-            // refer to reference type fields because those objects may
-            // have already been finalized."
-
             if (!IsDisposed)
             {
                 if (disposingManagedResources)

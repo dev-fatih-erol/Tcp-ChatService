@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
 
-namespace NetCoreServer
+namespace ChatService.Tcp
 {
     /// <summary>
     /// Dynamic byte buffer
@@ -17,18 +16,22 @@ namespace NetCoreServer
         /// Is the buffer empty?
         /// </summary>
         public bool IsEmpty => (_data == null) || (_size == 0);
+
         /// <summary>
         /// Bytes memory buffer
         /// </summary>
         public byte[] Data => _data;
+
         /// <summary>
         /// Bytes memory buffer capacity
         /// </summary>
         public long Capacity => _data.Length;
+
         /// <summary>
         /// Bytes memory buffer size
         /// </summary>
         public long Size => _size;
+
         /// <summary>
         /// Bytes memory buffer offset
         /// </summary>
@@ -43,10 +46,12 @@ namespace NetCoreServer
         /// Initialize a new expandable buffer with zero capacity
         /// </summary>
         public Buffer() { _data = new byte[0]; _size = 0; _offset = 0; }
+
         /// <summary>
         /// Initialize a new expandable buffer with the given capacity
         /// </summary>
         public Buffer(long capacity) { _data = new byte[capacity]; _size = 0; _offset = 0; }
+
         /// <summary>
         /// Initialize a new expandable buffer with the given data
         /// </summary>

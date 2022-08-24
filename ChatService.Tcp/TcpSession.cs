@@ -1,9 +1,7 @@
-using System;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 
-namespace NetCoreServer
+namespace ChatService.Tcp
 {
     /// <summary>
     /// TCP session is used to read and write data from the connected TCP client
@@ -763,18 +761,6 @@ namespace NetCoreServer
 
         protected virtual void Dispose(bool disposingManagedResources)
         {
-            // The idea here is that Dispose(Boolean) knows whether it is
-            // being called to do explicit cleanup (the Boolean is true)
-            // versus being called due to a garbage collection (the Boolean
-            // is false). This distinction is useful because, when being
-            // disposed explicitly, the Dispose(Boolean) method can safely
-            // execute code using reference type fields that refer to other
-            // objects knowing for sure that these other objects have not been
-            // finalized or disposed of yet. When the Boolean is false,
-            // the Dispose(Boolean) method should not execute code that
-            // refer to reference type fields because those objects may
-            // have already been finalized."
-
             if (!IsDisposed)
             {
                 if (disposingManagedResources)
